@@ -3,10 +3,16 @@ package Practice
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkContext
 
-object CostForEachWord {
+object CostForEachWord extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
-  val sc = new SparkContext("local[*]","LinkedInConnections")
+  val sc = new SparkContext("local[*]", "LinkedInConnections")
   val inputData = sc.textFile("C:/Users/velpu/Documents/BigDataTrendyTech/week-10/Datasets/bigdatacampaigndata.csv")
-  val filteredData = inputData.map(x=>(x.split(",")(0),x.split(",")(10).toInt))
-  filteredData.collect.foreach(println)
+  val filteredData = inputData.map(x => (x.split(",")(10).toFloat, x.split(",")(0).toLowerCase()))
+  val splittedData = filteredData.flatMapValues(x=>x.split(" ")).map(x=>(x._2,x._1))
+  val finalOutput = splittedData.reduceByKey((x,y)=>x+y).sortBy(x=>x._2,false)
+
+  finalOutput.collect.foreach(println)
 }
+
+
+
