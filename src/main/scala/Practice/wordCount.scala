@@ -10,5 +10,5 @@ object wordCount extends App {
   val rdd3 = rdd2.map(x=>(x,1))
   val rdd4 = rdd3.reduceByKey((x,y)=>x+y).map(x=>(x._2,x._1)).sortByKey(false).map(x=>(x._2,x._1))
   rdd4.collect.foreach(println)
- // scala.io.StdIn.readLine()
+ // scala.io.StdIn.readLine()                               //To read input(To pause to check localhost:4040)
 }

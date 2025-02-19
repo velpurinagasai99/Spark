@@ -28,4 +28,5 @@ def loadBoaringWords(): Set[String] = {
   val finalOutput = filteredData.reduceByKey((x,y)=>x+y).sortBy(x=>x._2,false)
 
   finalOutput.collect.foreach(println)
+  scala.io.StdIn.readLine()
 }
