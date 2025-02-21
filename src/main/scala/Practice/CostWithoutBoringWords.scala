@@ -2,7 +2,6 @@ package Practice
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkContext
-
 import scala.io.Source
 
 /*

@@ -3,6 +3,9 @@ package Practice
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkContext
 
+/*
+After Running check difference by using cache method.
+*/
 object CostForEachWord extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
   val sc = new SparkContext("local[*]", "LinkedInConnections")
@@ -11,7 +14,15 @@ object CostForEachWord extends App {
   val splittedData = filteredData.flatMapValues(x=>x.split(" ")).map(x=>(x._2,x._1))
   val finalOutput = splittedData.reduceByKey((x,y)=>x+y).sortBy(x=>x._2,false)
 
-  finalOutput.collect.foreach(println)
+  finalOutput.collect.foreach(println)                        //Action1
+
+  val finalOutputDoubled = finalOutput.map(x=>(x._1,x._2*2))
+  val finalOutputfiltered = finalOutputDoubled.filter(x=>x._2>100)      //.cache()
+
+  finalOutputfiltered.collect.foreach(println)                //Action2
+  println(finalOutputfiltered.count())                        //Action3
+
+  scala.io.StdIn.readLine()
 }
 
 
