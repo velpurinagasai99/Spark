@@ -15,7 +15,7 @@
           </set>
         </option>
         <option name="resolveSbtClassifiers" value="true" />
-        <option name="sbtVersion" value="0.13.17" />
+        <option name="sbtVersion" value="1.8.2" />
         <option name="separateProdAndTestSources" value="true" />
         <option name="useSbtShellForImport" value="true" />
       </SbtProjectSettings>
