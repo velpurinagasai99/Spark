@@ -3,7 +3,7 @@ package DFandSQLfiles
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
-object DFDataframes extends App {
+object Dataframes extends App {
   var sparkConf = new SparkConf()
   sparkConf.set("spark.app.name","spark session application")
   sparkConf.set("spark.master","local[*]")

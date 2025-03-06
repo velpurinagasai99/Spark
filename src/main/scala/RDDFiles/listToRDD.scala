@@ -8,7 +8,7 @@ import org.apache.spark.SparkContext
 * If we need shuffling(Each row is dependent on other rows) then it is wide transformation.....Eg, ReduceByKey
 * If it doesn't require shuffling, then it is Narrow Transformation.....Eg, Filter, map, flatmap
 */
-object RDDlistToRDD extends App {
+object listToRDD extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
   val sc = new SparkContext("local[*]", "LinkedInConnections")
   val list = List("WARN: Tuesday 4 September 0405",
