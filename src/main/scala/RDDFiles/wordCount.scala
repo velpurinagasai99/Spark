@@ -1,11 +1,7 @@
 package RDDFiles
-
-/*
-****************************
-* Remember this Nagasai, map accepts (x,y) as parameters of a row.....whereas reducebyKey accepts (x,y) values of two different key value pairs
-****************************
-  * */
-
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
+import org.apache.spark.SparkContext
 object wordCount extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
   val sc = new SparkContext("local[*]","wordcount")
