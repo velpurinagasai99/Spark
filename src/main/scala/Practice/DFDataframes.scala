@@ -3,7 +3,7 @@ package Practice
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
-object Dataframes extends App {
+object DFDataframes extends App {
   var sparkConf = new SparkConf()
   sparkConf.set("spark.app.name","spark session application")
   sparkConf.set("spark.master","local[*]")

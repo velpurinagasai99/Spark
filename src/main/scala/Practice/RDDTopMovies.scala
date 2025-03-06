@@ -8,7 +8,7 @@ import scala.io.Source
 
 //******Use versions related to spark and scala-1.0 when running this file*********
 
-object TopMovies extends App {
+object RDDTopMovies extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
   val sc = new SparkContext("local[*]", "TopMovies")
   val inputData = sc.textFile("C:/Users/velpu/Documents/BigDataTrendyTech/week-11/ratings-201019-002101.dat")

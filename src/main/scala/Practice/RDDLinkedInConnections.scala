@@ -2,7 +2,7 @@ package Practice
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
 import org.apache.spark.SparkContext
-object LinkedInConnections extends App {
+object RDDLinkedInConnections extends App {
   Logger.getLogger("org").setLevel(Level.ERROR)
   val sc = new SparkContext("local[*]","LinkedInConnections")
   val inputData = sc.textFile("C:/Users/velpu/Documents/BigDataTrendyTech/week9/friendsdata-201008-180523.csv")

@@ -9,7 +9,7 @@ This uses broadcast variable which is similar to map side join in Hive
 
 and also we use filter method(which works only on values in a map) to remove the boaringwords present in broadcast
 */
-object CostWithoutBoringWords extends App{
+object RDDCostWithoutBoringWords extends App{
 def loadBoaringWords(): Set[String] = {
   var boringWords: Set[String] = Set()
   val lines = Source.fromFile("C:/Users/velpu/Documents/BigDataTrendyTech/week-10/Datasets/boringwords.txt").getLines()
