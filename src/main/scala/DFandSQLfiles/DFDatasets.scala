@@ -1,4 +1,4 @@
-package Practice
+package DFandSQLfiles
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, Row, SparkSession}

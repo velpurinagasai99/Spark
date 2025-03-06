@@ -1,4 +1,4 @@
-package Practice
+package RDDFiles
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkContext
