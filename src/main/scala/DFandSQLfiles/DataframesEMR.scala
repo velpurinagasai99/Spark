@@ -28,6 +28,6 @@ object DataframesEMR {
       .write
       .format("json")
       .mode(SaveMode.Overwrite)
-      .option("path","C:/Users/rahit/outputs")
+      .save(outputBaseDir+"orders")
   }
 }
