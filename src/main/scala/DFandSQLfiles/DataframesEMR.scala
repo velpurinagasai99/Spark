@@ -1,7 +1,7 @@
 package DFandSQLfiles
 import com.typesafe.config.ConfigFactory
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{SaveMode, SparkSession}
 object DataframesEMR {
   def main(args: Array[String]): Unit ={
     val props = ConfigFactory.load()
@@ -22,9 +22,12 @@ object DataframesEMR {
       .read
       .option("header",true)
       .option("inferschema",true)
-      .csv(inputBaseDir+"/Orders")
+      .csv(inputBaseDir+"Orders.csv")
     val outputBaseDir = envProps.getString("output.base.dir")
     order
-      .show()
+      .write
+      .format("json")
+      .mode(SaveMode.Overwrite)
+      .option("path","C:/Users/rahit/outputs")
   }
 }
