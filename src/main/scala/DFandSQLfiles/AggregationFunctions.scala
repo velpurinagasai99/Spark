@@ -47,4 +47,7 @@ object AggregationFunctions extends App{
   val aggregatedCustomers= customers.withColumn("RunningTotal",sum(expr("Quantity*UnitPrice")).over(windowstr))
   aggregatedCustomers.show()
 
+  val aggCustomersRenamed = aggregatedCustomers.withColumnRenamed("InvoiceDate","InvDate")
+  aggCustomersRenamed.show()
+
 }
