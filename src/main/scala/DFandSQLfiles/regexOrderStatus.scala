@@ -14,7 +14,7 @@ object regexOrdersStatus extends App {
         Orders(order_id.toInt , customer_id.toInt , order_status )
     }
   }
-  var sparkConf = new SparkConf()
+  val sparkConf = new SparkConf()
   sparkConf.set("spark.app.name", "spark session application")
   sparkConf.set("spark.master", "local[*]")
 
@@ -22,10 +22,15 @@ object regexOrdersStatus extends App {
     .config(sparkConf)
     .getOrCreate()
 
-  val lines = spark.sparkContext.textFile("C:/Users/user/Desktop/BigData/Orders.txt")
+  val lines = spark.sparkContext.textFile("C:/Users/rahit/OneDrive/Desktop/BigData/Week-12/Orders1.csv")
   lines.collect.foreach(println)
   import spark.implicits._
-  //val OrdersDS = lines.map(parser)
+  val OrdersDS = lines.map(line=>{
+    line match {
+      case myregex(order_id, date, customer_id, order_status) =>
+        Orders(order_id.toInt , customer_id.toInt , order_status )
+    }
+  })
   //  OrdersDS.select("order_id").show
   //  OrdersDS.groupBy("order_status").count().show
 }

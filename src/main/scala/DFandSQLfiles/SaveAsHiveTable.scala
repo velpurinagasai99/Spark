@@ -5,7 +5,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.{SaveMode, SparkSession}
 
 object SaveAsHiveTable extends App{
-  var sparkConf = new SparkConf()
+  val sparkConf = new SparkConf()
   sparkConf.set("spark.app.name","spark session application")
   sparkConf.set("spark.master","local[*]")
 
