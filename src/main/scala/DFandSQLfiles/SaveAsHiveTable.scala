@@ -25,7 +25,9 @@ object SaveAsHiveTable extends App{
 
   ordersDF.write
     .format("csv")
-    .mode(SaveMode.Overwrite)           //Save As hive Table under retail database
+    .mode(SaveMode.Overwrite)
+    .bucketBy(4,"order_customer_id")        //Using Bucket by can be done while saving as a table
+    .sortBy("order_customer_id")
     .saveAsTable("retail.orders")
 
   spark.catalog.listTables("retail").show()
