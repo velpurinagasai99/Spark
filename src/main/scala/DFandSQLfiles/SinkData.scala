@@ -19,7 +19,8 @@ object SinkData extends App{
     .option("path","C:/Users/rahit/OneDrive/Desktop/BigData/Week-12/orders-201025-223502.csv")
     .load()
   ordersDF.write
-    .format("csv")
+    .format("json")
+    .partitionBy("order_status")
     .mode(SaveMode.Overwrite)
     .option("path","C:/Users/rahit/OneDrive/Desktop/BigData/Week-12/outputs")
     .save()
