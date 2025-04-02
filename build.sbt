@@ -14,6 +14,7 @@ lazy val root = (project in file("."))
 libraryDependencies += "org.apache.spark" %% "spark-core" % "3.4.2"
 libraryDependencies += "org.apache.spark" %% "spark-sql" % "3.4.1" % "provided"
 libraryDependencies += "com.typesafe" % "config" % "1.3.2"
+libraryDependencies += "org.apache.spark" %% "spark-hive" % "3.4.1" % "provided"
 
 
 //libraryDependencies += "org.apache.spark" %% "spark-core" % "2.4.8" //Use these when running scala version -1.0 code...like when using spark contest
