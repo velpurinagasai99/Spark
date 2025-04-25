@@ -1,21 +1,25 @@
-package DFandSQLfiles
+package EMRFiles
+
 import com.typesafe.config.ConfigFactory
-import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{SaveMode, SparkSession}
 object DataframesEMR {
   def main(args: Array[String]): Unit ={
+
+//    println("Resolved config:")
+//    println(ConfigFactory.load().root().render())
+//    println(ConfigFactory.load().root().render())
     val props = ConfigFactory.load()
     val envProps = props.getConfig(args(0))
-    val spark = SparkSession
-      .builder
-      .appName("Testing EMR")
-      .master(envProps.getString("execution.mode"))
-      .getOrCreate
+    val sparkBuilder = SparkSession.builder.appName("Testing EMR")
+
+    if (args(0) == "dev") {
+      sparkBuilder.master("local[*]")
+    }
+
+    val spark = sparkBuilder.getOrCreate()
 
     spark.sparkContext.setLogLevel("Error")
     spark.conf.set("spark.sql.shuffle.partitions","2")
-
-    import spark.implicits._
 
     val inputBaseDir = envProps.getString("input.base.dir")
     val order = spark

@@ -16,7 +16,7 @@ object OrderStatus extends App{
     .format("csv")
     .option("header",true)
     .option("inferSchema",true)
-    .option("path","C:/Users/velpu/Documents/BigDataTrendyTech/week-12/orders-201025-223502.csv")
+    .option("path","C:/Users/velpu/Documents/BigDataTrendyTech/week-12/Orders.csv")
     .load
 
   ordersDF.createOrReplaceTempView("orders")
@@ -28,6 +28,7 @@ object OrderStatus extends App{
 
   finalRdd.show()
 
+  scala.io.StdIn.readLine()
   spark.stop()
 
 }
