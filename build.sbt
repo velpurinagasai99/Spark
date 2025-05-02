@@ -5,7 +5,7 @@ mainClass in Compile := Some("EMRFiles.OrderStatusEMR")     //While building the
 lazy val root = (project in file("."))
   .settings(
     name := "Scala_Practice"
-    ,scalaVersion := "2.12.10"
+    ,scalaVersion := "2.12.18"
     //,scalaVersion := "2.11.8"       //Use these when running spark version -1.0 code...like when using spark contest
   )
 
