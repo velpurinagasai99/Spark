@@ -135,4 +135,15 @@ object Rough {
 //    1. Factory Design pattern-> Separate instance creation logic seperate from cliient visibility.
 //
 //    Flatmap accepts one parameter, Flatmapvalues accepts two values of two tuples.
+
+
+  //***************************************Week10- Shared Variables********************************************************
+  // Broad cast variable - is same as map side Join in HIve(Separate copy on each machine0
+  //Accumlator - a counter (a single copy on driver machine)
+
+
+// Yarn architecture video: https://youtu.be/KqaPMCMHH4g?si=qBtkUhzW_gYkPs3F
+// Some Transformations and actions: https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations
+//.toDebugString
+//  Map Partition is executed on Partition level
 }
