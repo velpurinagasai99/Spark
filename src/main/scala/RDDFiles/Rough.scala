@@ -146,4 +146,18 @@ object Rough {
 // Some Transformations and actions: https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations
 //.toDebugString
 //  Map Partition is executed on Partition level
+
+//  Dataframe is a generic type(Row) of Dataset. i.e Dataframe = Dataset[Row] hence we get errors at run time instead of compile time
+//  To convert dataframe to dataset we need to make that generic type(Row) to a specific type, ie Dataset[Employee]
+//  where Employee is an object
+//  Serialization means converting Data into Binary Format....DF is managed by tungsten binary Format where as Datasets are Java binary formats
+//  Week-10 Spark session 8 Shema defining
+//  While writing output to sink we can control number of files by 1 repartition 2 patrition by and bucket by and 3Using sort by
+//  Nodes(Number of machines) each node can have multiple worker executors(containers)(RAM and CPU cores)
+//  where our programs runs. Revise week-13 session 2 and 3
+//  --num-executors
+//  --driver-memory
+//  --executor-memory
+//  --executor-cores
+//  spark.dynamicAllocation.enabled
 }

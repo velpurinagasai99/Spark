@@ -25,18 +25,20 @@ object AgeEligibilityCol extends App{
     .config(sparkConf)                // instead of sparkConf declaration we can directly use
     .getOrCreate()                    // SparkSession.builder
 
-  val customers : Dataset[Row] = spark.read
+  val customers = spark.read
     .format("csv")
     .option("inferSchema",true)
-    .option("path","C:/Users/rahit/OneDrive/Desktop/BigData/Week-12/CustomerDetails.txt")
+    .option("header",true)
+    .option("path","C:/Users/velpu/Documents/BigDataTrendyTech/week-12/CustomerDetails.csv")
     .load
   val customersDf:Dataset[Row] = customers.toDF("name","age","city")
   import spark.implicits._
 
-//  spark.udf.register("parseagefunction",Ages.ageCheck(_:Int):String)
-//  val customersFinal = customersDs.withColumn("adult",expr("parseagefunction(age)"))
+  spark.udf.register("parseagefunction",Ages.ageCheck(_:Int):String)
+  val customersFinal = customersDf.withColumn("adult",expr("parseagefunction(age)"))
 
-  val parseagefunction = udf((age: Int) => Ages.ageCheck(age))
-  val customersFinal = customersDf.withColumn("adult",parseagefunction(col("age")))
+//  val parseagefunction = udf((age: Int) => Ages.ageCheck(age))
+//  val customersFinal = customersDf.withColumn("adult",parseagefunction(col("age")))
   customersFinal.show()
+  spark.catalog.listFunctions().filter(x=>x.name == "parseagefunction").show() // doesnt work when we use col object expression
 }
