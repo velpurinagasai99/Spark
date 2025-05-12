@@ -21,17 +21,21 @@ object SortandHashAggregate extends App{
 
   ordersDF.createOrReplaceTempView("orders")
 
-  //Results Sort Aggregate
+//  Results Sort Aggregate
   spark.sql("select order_customer_id,date_format(order_date,'MMMM') orderdt,count(1) cnt, first(date_format(" +
-    "order_date,'M')) monthnum from orders group by order_customer_id, orderdt, monthnum").explain           //Sumit sir explained sort aggregate and Hash aggregate is something to do with strings but not with order by.But, it is something to do with order by of strings
+    "order_date,'M')) monthnum from orders group by order_customer_id, orderdt").explain           //Sumit sir explained sort aggregate and Hash aggregate is something to do with strings but not with order by.But, it is something to do with order by of strings
 
-  //Results Hash Aggregate
+//  Results Hash Aggregate
   spark.sql("select order_customer_id,date_format(order_date,'MMMM') orderdt,count(1) cnt, date_format(" +
     "order_date,'M') monthnum from orders group by order_customer_id, orderdt, monthnum").explain           //This leads to Hash Aggregate instead Sort Aggregate as first needs to sort but not group by
 
-  //Results Hash Aggregate
+//  Results Sort Aggregate
   spark.sql("select order_customer_id,date_format(order_date,'MMMM') orderdt,count(1) cnt, cast(first(date_format(" +
-    "order_date,'M')) as int) monthnum from orders group by order_customer_id, orderdt").explain           //This leads to Hash Aggregate as integers can be done Hash in Hashing but not strings.
+    "order_date,'M')) as int) monthnum from orders group by order_customer_id, orderdt").explain           //This leads to Sort Aggregate even if it is integer type
+
+//  Results Hash Aggregate
+  spark.sql("select order_customer_id,date_format(order_date,'MMMM') orderdt,count(1) cnt, first(cast(date_format(" +
+    "order_date,'M') as int)) monthnum from orders group by order_customer_id, orderdt").explain
 
   spark.stop()
 }
