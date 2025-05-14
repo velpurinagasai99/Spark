@@ -160,4 +160,6 @@ object Rough {
 //  --executor-memory
 //  --executor-cores
 //  spark.dynamicAllocation.enabled
+
+//We can also add our own rules to Catalyst Optimizer if needed
 }
