@@ -162,4 +162,30 @@ object Rough {
 //  spark.dynamicAllocation.enabled
 
 //We can also add our own rules to Catalyst Optimizer if needed
+
+
+
+  /*
+
+  EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR
+E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R
+EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R
+  E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
+  E::::E             M::::::M:::M   M:::M::::::M   R:::R      R::::R
+  E:::::EEEEEEEEEE   M:::::M M:::M M:::M M:::::M   R:::RRRRRR:::::R
+  E::::::::::::::E   M:::::M  M:::M:::M  M:::::M   R:::::::::::RR
+  E:::::EEEEEEEEEE   M:::::M   M:::::M   M:::::M   R:::RRRRRR::::R
+  E::::E             M:::::M    M:::M    M:::::M   R:::R      R::::R
+  E::::E       EEEEE M:::::M     MMM     M:::::M   R:::R      R::::R
+EE:::::EEEEEEEE::::E M:::::M             M:::::M   R:::R      R::::R
+E::::::::::::::::::E M:::::M             M:::::M RR::::R      R::::R
+EEEEEEEEEEEEEEEEEEEE MMMMMMM             MMMMMMM RRRRRRR      RRRRRR
+
+to connect using your pc while creating cluster create an ssh key pair and then add you ip address to the inbound port of
+primary node.
+open your power-shell and give this command with the downloaded .pem file address and primary node ec2 instance id
+
+ssh -i "C:\Users\velpu\Documents\hands-on-aws-certified-data-engineer-associate-DEA-C01-Practice-main\4.redshift-code\redshift-connect.pem" hadoop@ec2-3-135-18-236.us-east-2.compute.amazonaws.com
+
+ */
 }
