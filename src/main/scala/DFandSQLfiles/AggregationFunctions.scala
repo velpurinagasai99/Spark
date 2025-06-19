@@ -1,5 +1,6 @@
 package DFandSQLfiles
 
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
@@ -14,7 +15,7 @@ object AggregationFunctions extends App{
   val spark =SparkSession.builder()
     .config(sparkConf)                // instead of sparkConf declaration we can directly use
     .getOrCreate()                    // SparkSession.builder
-
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val customers : Dataset[Row] = spark.read
     .format("csv")
     .option("header",true)

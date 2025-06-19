@@ -1,9 +1,8 @@
 package DFandSQLfiles
 
-import org.apache.log4j.{Level, Logger}
+import org.apache.logging.log4j.core.config.Configurator
+import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
-import org.apache.spark.sql.functions.date_format
-import org.apache.spark.{SparkConf, SparkContext}
 
 object LogsAndPivoting extends App{
 
@@ -15,7 +14,7 @@ object LogsAndPivoting extends App{
     .config(sparkConf)
     .getOrCreate()
 
-
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val mappedLogs : Dataset[Row] = spark.read
     .format("csv")
     .option("header",true)

@@ -1,5 +1,6 @@
 package DFandSQLfiles
 
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
@@ -13,7 +14,7 @@ object ColumnObjects extends App {
     .enableHiveSupport()
     .config(sparkConf)
     .getOrCreate()
-
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val ordersDF = spark.read
     .format("csv")
     .option("header",true)

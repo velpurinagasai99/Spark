@@ -1,5 +1,6 @@
 package Streaming
 
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.SparkContext
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
@@ -20,6 +21,7 @@ object wCStatefull extends App{
   val sc = new SparkContext("local[*]","wordcountStateless")
   sc.setLogLevel("ERROR")
   val ssc = new StreamingContext(sc, Seconds(10))
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val lines = ssc.socketTextStream("localhost",9998)          //in cmd run: ncat -lk 9998
   ssc.checkpoint(".")
   val words = lines.flatMap(x=>x.split(" ")).map(x=>(x,1))    //open googlechrome and go localhost:9998 and then start typing in command Prompt

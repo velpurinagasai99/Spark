@@ -1,7 +1,8 @@
 package DFandSQLfiles
 
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.{SparkSession,DataFrame}
+import org.apache.spark.sql.SparkSession
 
 object ListToDf extends App{
   val sparkConf = new SparkConf()
@@ -11,7 +12,7 @@ object ListToDf extends App{
   val spark =SparkSession.builder()
     .config(sparkConf)                // instead of sparkConf declaration we can directly use
     .getOrCreate()
-
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val myList = (( 1,"25-07-2013",11599,"CLOSED"),
     (2,"25-07-2013",256,"PENDING_PAYMENT"),
     (3,"25-07-2013",12111,"COMPLETE"),

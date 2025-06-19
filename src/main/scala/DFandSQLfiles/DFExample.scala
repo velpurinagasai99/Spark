@@ -1,5 +1,6 @@
 package DFandSQLfiles
 
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
@@ -11,7 +12,7 @@ object DFExample extends App {
   val spark =SparkSession.builder()
     .config(sparkConf)                // instead of sparkConf declaration we can directly use
     .getOrCreate()
-
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val ordersDF = spark.read.option("header",true).csv("C:/Users/velpu/Documents/BigDataTrendyTech/week-11/orders-201019-002101.csv")
   val groupedOrders = ordersDF.repartition(4).where("order_customer_id>10000")
     .select("order_id","order_customer_id")

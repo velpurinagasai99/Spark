@@ -1,5 +1,6 @@
 package DFandSQLfiles
 
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, Row, SparkSession}
 
@@ -11,7 +12,7 @@ object OrderStatus extends App{
   val spark =SparkSession.builder()
     .config(sparkConf)                // instead of sparkConf declaration we can directly use
     .getOrCreate()                    // SparkSession.builder
-
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val ordersDF : Dataset[Row] = spark.read
     .format("csv")
     .option("header",true)

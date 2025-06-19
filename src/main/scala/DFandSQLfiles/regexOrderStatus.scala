@@ -1,5 +1,6 @@
 package DFandSQLfiles
 
+import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 case class Orders(order_id:Int,customer_id:Int, order_status:String)
@@ -25,7 +26,7 @@ object regexOrdersStatus extends App {
   val spark = SparkSession.builder()
     .config(sparkConf)
     .getOrCreate()
-
+  Configurator.setLevel("org", org.apache.logging.log4j.Level.ERROR)
   val lines = spark.sparkContext.textFile("C:/Users/velpu/Documents/BigDataTrendyTech/week-11/Orders.txt")
 
   import spark.implicits._
