@@ -167,7 +167,7 @@ object Rough {
 
   /*
 
-  EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR
+EEEEEEEEEEEEEEEEEEEE MMMMMMMM           MMMMMMMM RRRRRRRRRRRRRRR
 E::::::::::::::::::E M:::::::M         M:::::::M R::::::::::::::R
 EE:::::EEEEEEEEE:::E M::::::::M       M::::::::M R:::::RRRRRR:::::R
   E::::E       EEEEE M:::::::::M     M:::::::::M RR::::R      R::::R
@@ -187,5 +187,12 @@ open your power-shell and give this command with the downloaded .pem file addres
 
 ssh -i "C:\Users\velpu\Documents\hands-on-aws-certified-data-engineer-associate-DEA-C01-Practice-main\4.redshift-code\redshift-connect.pem" hadoop@ec2-3-135-18-236.us-east-2.compute.amazonaws.com
 
+
+
+
+Apache Kafka
+
+1. scenarios to check have many brokers and less partitions with 2 or 3 replication factor
+2. have leader and fail that broker and check if follower becomes leader and again up the broker
  */
 }

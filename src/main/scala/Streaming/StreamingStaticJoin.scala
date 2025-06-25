@@ -2,7 +2,7 @@ package Streaming
 
 import org.apache.logging.log4j.core.config.Configurator
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{col, from_json}
+import org.apache.spark.sql.functions.{col, expr, from_json}
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types._
 /*
@@ -36,7 +36,7 @@ object StreamingStaticJoin extends App{
 
   //Modify the data
   val transactionDf = lines.select(from_json(col("value"),transactionSchema).alias("schemaname")).select("schemaname.*")
-//    .withWatermark("transaction_dt","30 minute")
+    .withWatermark("transaction_dt","30 minute")
 
   //Load static Dataframe
   val memberDf = spark.read
@@ -47,14 +47,14 @@ object StreamingStaticJoin extends App{
     .load()
 
   //Join
-  val joinCondition = transactionDf.col("card_id") === memberDf.col("card_id")
-  val joinType = "inner"
-  val enrichedData = transactionDf.join(memberDf,joinCondition,joinType).drop(memberDf.col("card_id"))
+  val joinCondition = expr(" t.card_id == m.card_id and transaction_dt between card_issue_date and card_issue_date + interval 15 minute ")    //transactionDf.col("card_id") === memberDf.col("card_id")
+  val joinType = "rightOuter"
+  val enrichedData = transactionDf.alias("t").join(memberDf.alias("m"),joinCondition,joinType).drop(memberDf.col("card_id"))
 
   //write to sink
   val execQuery = enrichedData.writeStream
     .format("console")
-    .outputMode("update")
+    .outputMode("append")
     .option("chcekpointLocation","check-point-location1")
     .trigger(Trigger.ProcessingTime("15 second"))
     .start()
