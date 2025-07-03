@@ -28,3 +28,6 @@
 ./kafka-topics.sh --create --topic customers --bootstrap-server localhost:9092,localhost:9093 --partitions 3  --replication-factor 1
 ./kafka-console-consumer.sh --bootstrap-server  localhost:9092 --topic customers --from-beginning --group customergroups
 ./kafka-console-producer.sh --broker-list localhost:9092 --topic customers < ../../../Desktop/customersdata.csv
+
+#to check which is controlling the brokers
+./zookeeper-shell.sh localhost:2181
